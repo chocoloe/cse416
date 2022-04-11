@@ -95,10 +95,6 @@ ridge_data = pd.DataFrame(data)
 # Q5: Analyze Ridge data
 # TODO
 def print_coefficients(model, features):
-    """
-    This function takes in a model column and a features column. 
-    And prints the coefficient along with its feature name.
-    """
     feats = list(zip(features, model.coef_))
     print(*feats, sep = "\n")
     
