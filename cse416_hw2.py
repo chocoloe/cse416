@@ -94,9 +94,6 @@ ridge_data = pd.DataFrame(data)
 
 # Q5: Analyze Ridge data
 # TODO
-def print_coefficients(model, features):
-    feats = list(zip(features, model.coef_))
-    print(*feats, sep = "\n")
     
 index = ridge_data['validation_rmse'].idxmin()
 row = ridge_data.loc[index]
