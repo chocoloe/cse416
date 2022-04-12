@@ -101,10 +101,6 @@ test_predictions = model.predict(test_sales)
 test_rmse_ridge = mean_squared_error(test_predictions, test_price)
 num_zero_coeffs_ridge = 0
 
-print('L2 Penalty',  best_l2)
-print('Test RSME', test_rmse_ridge)
-print('Num Zero Coeffs', num_zero_coeffs_ridge)
-
 # Train LASSO models
 l1_lambdas = np.logspace(1, 7, 7, base=10)
 
@@ -136,6 +132,3 @@ test_predictions = model.predict(test_sales)
 test_rmse_lasso = mean_squared_error(test_predictions, test_price)
 num_zero_coeffs_lasso = 37
 
-print('Best L1 Penalty', best_l1)
-print('Test RMSE', test_rmse_lasso)
-print('Num Zero Coeffs', num_zero_coeffs_lasso)
