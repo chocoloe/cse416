@@ -99,7 +99,7 @@ row = ridge_data.loc[index]
 best_l2 = row['l2_penalty']
 test_predictions = row['model'].predict(test_sales)
 test_rmse_ridge = np.sqrt(mean_squared_error(test_predictions, test_price))
-num_zero_coeffs_ridge = 0
+num_zero_coeffs_ridge = (row['model'].coef_ == 0).sum()
 
 # Train LASSO models
 l1_lambdas = np.logspace(1, 7, 7, base=10)
@@ -130,5 +130,5 @@ row = lasso_data.loc[index]
 best_l1 = row['l1_penalty']
 test_predictions = row['model'].predict(test_sales)
 test_rmse_lasso = np.sqrt(mean_squared_error(test_predictions, test_price))
-num_zero_coeffs_lasso = 37
+num_zero_coeffs_lasso = (row['model'].coef_ == 0).sum()
 
