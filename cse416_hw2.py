@@ -113,8 +113,8 @@ for l1 in l1_lambdas:
   model.fit(train_sales, train_price) 
   train_predictions = model.predict(train_sales)
   val_predictions = model.predict(validation_sales)
-  train_rmse = np.sqrt(mean_squared_error(train_predictions, train_price))
-  val_rmse = np.sqrt(mean_squared_error(val_predictions, validation_price))
+  train_rmse = np.sqrt(mean_squared_error(train_price, train_predictions))
+  val_rmse = np.sqrt(mean_squared_error(validation_price, val_predictions))
   data.append({
     'l1_penalty': l1,
     'model': model,
@@ -129,6 +129,6 @@ index = lasso_data['validation_rmse'].idxmin()
 row = lasso_data.loc[index]
 best_l1 = row['l1_penalty']
 test_predictions = model.predict(test_sales)
-test_rmse_lasso = mean_squared_error(test_predictions, test_price)
+test_rmse_lasso = np.sqrt(mean_squared_error(test_predictions, test_price))
 num_zero_coeffs_lasso = 37
 
