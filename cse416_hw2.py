@@ -5,7 +5,11 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 # Add any additional imports here
-# TODO
+from sklearn import preprocessing
+from sklearn import linear_model
+from sklearn.metrics import mean_squared_error
+from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import Ridge
 
 np.random.seed(416)
 
@@ -55,7 +59,6 @@ train_sales, validation_sales, train_price, validation_price = \
 
 # Q2: Standardize data
 # TODO
-from sklearn import preprocessing
 scaler = preprocessing.StandardScaler().fit(train_sales)
 train_sales = scaler.transform(train_sales)
 validation_sales = scaler.transform(validation_sales)
@@ -63,8 +66,6 @@ test_sales = scaler.transform(test_sales)
 
 # Q3: Train baseline model
 # TODO
-from sklearn.metrics import mean_squared_error
-from sklearn.linear_model import LinearRegression
 train_model = LinearRegression().fit(sales, price, sample_weight=None)
 test_rmse_unregularized = np.sqrt(mean_squared_error(price, train_model.predict(sales)))
 
@@ -73,8 +74,6 @@ l2_lambdas = np.logspace(-5, 5, 11, base = 10)
 
 # Q4: Implement code to evaluate Ridge Regression with various L2 Penalties
 # TODO
-from sklearn.linear_model import Ridge
-from sklearn.metrics import mean_squared_error
 
 data = []
 for lamb in l2_lambdas:  
@@ -111,8 +110,6 @@ l1_lambdas = np.logspace(1, 7, 7, base=10)
 
 # Q6: Implement code to evaluate LASSO Regression with various L1 penalties
 # TODO
-from sklearn import linear_model
-from sklearn.metrics import mean_squared_error
 
 data = []
 for l1 in l1_lambdas:  
