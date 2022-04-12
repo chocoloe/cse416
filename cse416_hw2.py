@@ -97,7 +97,7 @@ ridge_data = pd.DataFrame(data)
 index = ridge_data['validation_rmse'].idxmin()
 row = ridge_data.loc[index]
 best_l2 = row['l2_penalty']
-test_predictions = model.predict(test_sales)
+test_predictions = row['model'].predict(test_sales)
 test_rmse_ridge = np.sqrt(mean_squared_error(test_predictions, test_price))
 num_zero_coeffs_ridge = 0
 
@@ -128,7 +128,7 @@ lasso_data = pd.DataFrame(data)
 index = lasso_data['validation_rmse'].idxmin()
 row = lasso_data.loc[index]
 best_l1 = row['l1_penalty']
-test_predictions = model.predict(test_sales)
+test_predictions = row['model'].predict(test_sales)
 test_rmse_lasso = np.sqrt(mean_squared_error(test_predictions, test_price))
 num_zero_coeffs_lasso = 37
 
