@@ -66,8 +66,8 @@ test_sales = scaler.transform(test_sales)
 
 # Q3: Train baseline model
 # TODO
-train_model = LinearRegression().fit(sales, price, sample_weight=None)
-test_rmse_unregularized = np.sqrt(mean_squared_error(price, train_model.predict(sales)))
+train_model = LinearRegression().fit(train_sales, train_price, sample_weight=None)
+test_rmse_unregularized = np.sqrt(mean_squared_error(test_price, train_model.predict(test_sales)))
 
 # Train Ridge models
 l2_lambdas = np.logspace(-5, 5, 11, base = 10)
@@ -81,8 +81,8 @@ for lamb in l2_lambdas:
   model.fit(train_sales, train_price)
   train_predictions = model.predict(train_sales)
   val_predictions = model.predict(validation_sales)
-  train_rmse = mean_squared_error(train_predictions, train_price)
-  val_rmse = mean_squared_error(val_predictions, validation_price)
+  train_rmse = np.sqrt(mean_squared_error(train_predictions, train_price))
+  val_rmse = np.sqrt(mean_squared_error(val_predictions, validation_price))
   data.append({
     'l2_penalty': lamb,
     'model': model,
@@ -98,7 +98,7 @@ index = ridge_data['validation_rmse'].idxmin()
 row = ridge_data.loc[index]
 best_l2 = row['l2_penalty']
 test_predictions = model.predict(test_sales)
-test_rmse_ridge = mean_squared_error(test_predictions, test_price)
+test_rmse_ridge = np.sqrt(mean_squared_error(test_predictions, test_price))
 num_zero_coeffs_ridge = 0
 
 # Train LASSO models
@@ -113,8 +113,8 @@ for l1 in l1_lambdas:
   model.fit(train_sales, train_price) 
   train_predictions = model.predict(train_sales)
   val_predictions = model.predict(validation_sales)
-  train_rmse = mean_squared_error(train_predictions, train_price)
-  val_rmse = mean_squared_error(val_predictions, validation_price)
+  train_rmse = np.sqrt(mean_squared_error(train_predictions, train_price))
+  val_rmse = np.sqrt(mean_squared_error(val_predictions, validation_price))
   data.append({
     'l1_penalty': l1,
     'model': model,
