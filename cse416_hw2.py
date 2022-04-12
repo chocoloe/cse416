@@ -100,7 +100,6 @@ row = ridge_data.loc[index]
 best_l2 = row['l2_penalty']
 test_predictions = model.predict(test_sales)
 test_rmse_ridge = mean_squared_error(test_predictions, test_price)
-print_coefficients(row['model'], all_features)
 num_zero_coeffs_ridge = 0
 
 print('L2 Penalty',  best_l2)
@@ -138,10 +137,8 @@ row = lasso_data.loc[index]
 best_l1 = row['l1_penalty']
 test_predictions = model.predict(test_sales)
 test_rmse_lasso = mean_squared_error(test_predictions, test_price)
-print_coefficients(row['model'], all_features)
 num_zero_coeffs_lasso = 37
 
 print('Best L1 Penalty', best_l1)
 print('Test RMSE', test_rmse_lasso)
 print('Num Zero Coeffs', num_zero_coeffs_lasso)
-print_coefficients(row['model'], all_features)
